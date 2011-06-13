@@ -1,0 +1,13 @@
+{
+	"name": "Chrome Sessions",
+	"version": "1.0",
+	"description": "Saving Chrome sessions. Assessing sessions through Chrome",
+	"browser_action": {
+		"default_icon": "icon.png",
+		"popup": "popup.html"
+	},
+	"permissions": [
+		"http://dev/",
+		"tabs"
+	]
+}

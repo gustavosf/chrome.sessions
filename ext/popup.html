@@ -1,0 +1,20 @@
+<button onclick='enviar()'>Enviar</button>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script>
+var enviar = function() {
+	chrome.tabs.getAllInWindow(null, function(tabs){
+		var id = '4df6489ab3e16';
+		var desc = 'testando!';
+
+		$.post(
+			'http://dev/chrome.sessions/'+id+'/session',
+			{ 'session': { 'desc':desc, 'tabs':tabs } },
+			function(resp) {
+				console.log(resp);
+			}
+		);
+			
+		
+	});
+}
+</script>
