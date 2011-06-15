@@ -7,10 +7,10 @@ Router::get(':id/sessions', function($id) {
 	$sessions = array();
 	foreach ($cursor as $id => $value) {
 		$sessions[] = array(
-			'id'      => $id,
-			'created' => $value['created'],
-			'desc'    => $value['desc'],
-			'tabs'    => sizeof($value['tabs']),
+			'id'     => $id,
+			'name'   => $value['desc'],
+			'date'   => date('d/m/y h\hi', $value['created']),
+			'detail' => sizeof($value['tabs']).' tabs',
 		);
 	}
 	Router::dispose($sessions);
