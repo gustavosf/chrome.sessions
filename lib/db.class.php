@@ -49,4 +49,17 @@ class DB {
 
 		return $id;
 	}
+
+	public static function sessionExists($userId, $sessionId) {
+		$db = self::getDB();
+		if ($db->sessions->findOne(array('user' => $userId, 'id' => $sessionId)))
+			return true;
+		return false;
+	}
+
+	public static function getSession($sessionId) {
+		$db = self::getDB();
+		$session = $db->sessions->findOne(array('id' => $sessionId));
+		return $session;
+	}
 }

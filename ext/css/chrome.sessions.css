@@ -20,11 +20,6 @@ div#container header {
 	border-bottom:1px solid #C3C3C3;
 }
 
-div#sessions {
-	width:350px;
-	border:1px solid #ccc;
-}
-
 div#sessions > div {
 	padding:8px 10px 8px 10px;
 	cursor:pointer;
@@ -56,7 +51,7 @@ div#sessions > div span {
 	color:#ccc;	
 }
 
-div#sessions > div div.button {
+div.button {
 	float:right;
 	font-size:80%;
 	border-radius:10px;
@@ -65,11 +60,28 @@ div#sessions > div div.button {
 	color:#999;
 	display:none;
 }
-div#sessions > div div.button:hover {
-	background-color:white;
-}
 
 div#sessions > div div.details {
 	display:none;
 	padding-top:10px;
+}
+
+div.button:hover {
+	background-color:white;
+}
+
+div.confirm, div.confirm:hover {
+	background-color:red !important;
+	color:white;
+}
+
+div#new {
+	padding: 8px 10px 8px 10px;
+}
+
+div#new > input {
+	margin-top:-5px;
+	border:0;
+	outline:0;
+	width:280px;
 }

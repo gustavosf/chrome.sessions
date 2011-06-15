@@ -1,4 +1,4 @@
-id = '4df670648edcc';
+id = '4df6489ab3e16';
 url = 'http://dev/chrome.sessions/' + id + '/';
 
 $(window).ready(function() {
@@ -27,19 +27,54 @@ $(window).ready(function() {
 	
 	$('div#sessions > div > div.button')
 		.live('click', function() {
-			var id = $(this).parent().attr('rel'),
-				op = $(this).html();
+			var that = $(this),
+			    data = that.parent().data('data'),
+				id = data.id,
+				op = that.html();
 
-			console.log(op, id);
+			if (op === 'drop' && that.hasClass('confirm') === false) {
+				that.toggleClass('confirm');
+				that.html('drop?');
+				setTimeout(function() {
+					that.toggleClass('confirm');
+					that.html('drop');
+				}, 2000);
+				return false;
+			}
+
+			if (op === 'drop?') {
+				$.ajax(url + 'session/' + id, {
+					type: 'delete',
+					dataType: 'json',
+					success: function(resp) {
+						if (resp.error) return;
+						that.parent()
+							.html('Session dropped!')
+							.delay(2000)
+							.slideUp(200, function(){ $(this).detach(); });
+					}
+				});
+			} 
+
+			else if (op === 'open') {
+				for (i in data.tabs) {
+					chrome.tabs.create({
+						pinned: (data.tabs[i].pinned === "true"),
+						url: data.tabs[i].url
+					});
+				}
+			}
 			
 			return false; // prevents bubbling
 		});
 	
 	$.get(url + 'sessions', function(resp) {
-		console.log(resp);
 		for (i in resp) {
 			console.log(resp[i]);
-			$('#sessionTemplate').tmpl(resp[i]).appendTo('#sessions');
+			$('#sessionTemplate')
+				.tmpl(resp[i])
+				.data('data', resp[i])
+				.appendTo('#sessions');
 		}
 	}, 'json');
 	
