@@ -17,6 +17,10 @@ class Router {
     public static function post($route, $fn) {
         self::setRoute('POST', $route, $fn);
     }
+	
+	public static function put($route, $fn) {
+        self::setRoute('PUT', $route, $fn);
+    }
 
     public static function delete($route, $fn) {
         self::setRoute('DELETE', $route, $fn);
@@ -61,7 +65,13 @@ class Router {
 				array_shift($match);
 				if (sizeof($match)) 
 	                $match = array_combine($route['vars'], $match);
-				$match['post'] = $_POST;
+				
+				if ($method == 'PUT') {	
+					parse_str(file_get_contents('php://input'), $match['_data']);
+				} elseif ($method == 'POST') {
+					$match['_data'] = $_POST;
+				}
+				
 				call_user_func_array($route['fn'], $match);
             }
         }
