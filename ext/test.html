@@ -1,0 +1,16 @@
+<script type="text/javascript" src="library/jsOAuth-1.2.min.js"></script>
+<script type="text/javascript">
+    var oauth, options;
+
+    options = {
+        consumerKey: 'gustavo.seganfredo.net',
+        consumerSecret: 'W0KMUeAfwfo8pUBvvEVP_0sa'
+    };
+
+    oauth = OAuth(options);
+	
+	oauth.get('http://oauth-sandbox.sevengoslings.net/two_legged', function (data) {
+        alert(data);
+    });
+</script>
+

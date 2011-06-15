@@ -1,0 +1,75 @@
+body {
+	margin:0;
+	padding:0;
+	background-color: #FDFDFD;
+	font-family: helvetica;
+	font-size: 80%;
+}
+
+div#container {
+	width:350px;
+	overflow:hidden;
+}
+
+div#container header {
+	background: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#ECECEC));
+	line-height:30px;
+	padding:5px;
+	font-size:120%;
+	font-weight:bold;
+	border-bottom:1px solid #C3C3C3;
+}
+
+div#sessions {
+	width:350px;
+	border:1px solid #ccc;
+}
+
+div#sessions > div {
+	padding:8px 10px 8px 10px;
+	cursor:pointer;
+	border-bottom:1px solid #ccc;
+}
+
+div#sessions > div:hover {
+	background-color:whiteSmoke;
+}
+
+div#sessions > div.selected:hover {
+	background-color: inherit;
+}
+
+div#sessions > div div.star {
+	width:13px;
+	height:13px;
+	float:left;
+	margin-right:8px;
+	background-image:url(../img/star_empty.png);
+}
+
+div#sessions > div div.full {
+	background-image:url(../img/star_full.png);
+}
+
+div#sessions > div span {
+	float:right;
+	color:#ccc;	
+}
+
+div#sessions > div div.button {
+	float:right;
+	font-size:80%;
+	border-radius:10px;
+	background-color:#ECECEC;
+	padding:1px 10px 1px 10px;
+	color:#999;
+	display:none;
+}
+div#sessions > div div.button:hover {
+	background-color:white;
+}
+
+div#sessions > div div.details {
+	display:none;
+	padding-top:10px;
+}

@@ -1,20 +1,45 @@
-<button onclick='enviar()'>Enviar</button>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-<script>
-var enviar = function() {
-	chrome.tabs.getAllInWindow(null, function(tabs){
-		var id = '4df6489ab3e16';
-		var desc = 'testando!';
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/chrome.sessions.css" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.tmpl.min.js"></script>
+	<script src="js/chrome.sessions.js"></script>
+	
+	<script id="sessionTemplate" type="text/html">
+		<div rel="${id}">
+			<div class="star ${star}"></div>
+			${name}
+			<span>${date}</span>
+			<div class="button drop">drop</div>
+			<div class="button open">open</div>
+			<div class="details">
+				${detail}
+			</div>
+		</div>
+	</script>
+	
+</head>
+<body>
+	<div id="container">
+		<header>Sessions</header>
+		<div id="sessions">
+			<!--
+			<div rel="porra">
+				<div class="star full"></div>
+				Sessão tal
+				<span>07/12/11 15h30</span>
+				<div class="button drop">drop</div>
+				<div class="button open">open</div>
+				<div class="details">
+					bla bla bla
+				</div>
+			</div>
+			-->
+		</div>
+	</div>
+</body>
+</html>
 
-		$.post(
-			'http://dev/chrome.sessions/'+id+'/session',
-			{ 'session': { 'desc':desc, 'tabs':tabs } },
-			function(resp) {
-				console.log(resp);
-			}
-		);
-			
-		
-	});
-}
-</script>
+
