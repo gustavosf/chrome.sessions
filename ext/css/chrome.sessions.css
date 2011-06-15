@@ -11,7 +11,7 @@ div#container {
 	overflow:hidden;
 }
 
-div#container header {
+div#container > header {
 	background: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#ECECEC));
 	line-height:30px;
 	padding:5px;
@@ -21,9 +21,9 @@ div#container header {
 }
 
 div#sessions > div {
-	padding:8px 10px 8px 10px;
 	cursor:pointer;
 	border-bottom:1px solid #ccc;
+	min-height:17px;
 }
 
 div#sessions > div:hover {
@@ -34,7 +34,12 @@ div#sessions > div.selected:hover {
 	background-color: inherit;
 }
 
-div#sessions > div div.star {
+div#sessions > div > header {
+	padding:8px 10px 8px 10px;
+	height:16px;
+}
+
+div#sessions > div > header > div.star {
 	width:13px;
 	height:13px;
 	float:left;
@@ -42,13 +47,47 @@ div#sessions > div div.star {
 	background-image:url(../img/star_empty.png);
 }
 
-div#sessions > div div.full {
+div#sessions > div > header > div.full {
 	background-image:url(../img/star_full.png);
 }
 
-div#sessions > div span {
+div#sessions > div > header > div.name {
+	white-space: nowrap;
+	width:307px;
+	float:left;
+	margin-right:-180px;
+}
+
+div#sessions > div > header > div.info {
+	z-index:99;
+	width:170px;
 	float:right;
+	text-align:right;
+	background: -webkit-gradient(
+		linear,
+		left top, right top,
+		color-stop(0%,rgba(255,255,255,0)),
+		color-stop(43%,rgba(255,255,255,1)),
+		color-stop(100%,rgba(255,255,255,1)));
+}
+
+div#sessions > div > header > div.over {
+	background: -webkit-gradient(
+		linear,
+		left top, right top,
+		color-stop(0%,rgba(245,245,245,0)),
+		color-stop(43%,rgba(245,245,245,1)),
+		color-stop(100%,rgba(245,245,245,1)));
+}
+
+div#sessions > div > header > span {
 	color:#ccc;	
+}
+
+div#sessions > div > div.details {
+	padding:0px 10px 8px 10px;
+	display:none;
+	padding-top:10px;
 }
 
 div.button {
@@ -59,11 +98,7 @@ div.button {
 	padding:1px 10px 1px 10px;
 	color:#999;
 	display:none;
-}
-
-div#sessions > div div.details {
-	display:none;
-	padding-top:10px;
+	cursor:pointer;
 }
 
 div.button:hover {

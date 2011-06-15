@@ -24,19 +24,7 @@ class DB {
 		return $db->sessions->find(array('user' => $id));
 	}
 
-	public static function userSession($user, $session) {
-		$db = self::getDB();
-		$id = uniqid();
-		$db->sessions->insert(array(
-			'id' => $id,
-			'user' => $user,
-			'created' => time(),
-			'desc' => $session['desc'],
-			'tabs' => $session['tabs'],
-		));
-
-		return $id;
-	}
+	
 
 	public static function userCreate($email) {
 		$db = self::getDB();
@@ -61,5 +49,24 @@ class DB {
 		$db = self::getDB();
 		$session = $db->sessions->findOne(array('id' => $sessionId));
 		return $session;
+	}
+	
+	public static function createSession($user, $session) {
+		$db = self::getDB();
+		$s = array(
+			'id' => uniqid(),
+			'user' => $user,
+			'created' => time(),
+			'desc' => $session['name'],
+			'tabs' => $session['tabs'],
+		);
+		$db->sessions->insert($s);
+
+		return $s;
+	}
+	
+	public static function dropSession($session) {
+		$db = self::getDB();
+		return $db->sessions->remove(array('id' => $session));
 	}
 }

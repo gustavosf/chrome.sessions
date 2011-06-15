@@ -8,12 +8,16 @@
 	<script src="js/chrome.sessions.js"></script>
 	
 	<script id="sessionTemplate" type="text/html">
-		<div rel="${id}">
-			<div class="star ${star}"></div>
-			${name}
-			<span>${date}</span>
-			<div class="button drop">drop</div>
-			<div class="button open">open</div>
+		<div>
+			<header>
+				<div class="star ${star}"></div>
+				<div class='name'>${name}&nbsp;</div>
+				<div class="info">
+					<span>${date}</span>
+					<div class="button drop">drop</div>
+					<div class="button open">open</div>
+				</div>
+			</header>
 			<div class="details">
 				${detail}
 			</div>

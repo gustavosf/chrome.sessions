@@ -30,7 +30,9 @@ Router::get('user/create', function() {
 });
 
 Router::delete(':id/session/:sid', function($id, $session) {
-	Router::dispose(array('id'=>$id,'session'=>$session));
+	if (!DB::sessionExists($id, $session)) Router::error('Sessão não existe!');
+	DB::dropSession($session);
+	Router::dispose(array());
 });
 
 Router::get(':id/session/:sid', function($id, $session) {
@@ -38,4 +40,17 @@ Router::get(':id/session/:sid', function($id, $session) {
 
 	$s = DB::getSession($session);
 	Router::dispose($s);
+});
+
+Router::put(':id/session', function($id, $put) {
+	if (!DB::userExists($id)) Router::error('Usuário não existe');
+	
+	$s = DB::createSession($id, $put);
+	Router::dispose($sessions[] = array(
+		'id'     => $s['id'],
+		'name'   => $s['desc'],
+		'date'   => date('d/m/y h\hi', $s['created']),
+		'detail' => sizeof($s['tabs']).' tabs',
+		'tabs'   => $s['tabs'],
+	));
 });
